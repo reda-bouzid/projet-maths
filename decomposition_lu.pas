@@ -218,6 +218,15 @@ begin
 	vecteurHilbert := somme;
 end;
 
+procedure creerVecteurHilbert(var B : Vecteur);
+var
+	i: Integer;
+begin
+	for i := 1 to n do
+	begin
+		B[i] := vecteurHilbert(i,N);
+	end;
+end;
 
 var
 	A, L, U: Matrice;
@@ -231,7 +240,7 @@ begin
 	readln(nomSortie);
 
 	initialiserMatrice(A, B, nomEntree);
-	DecompositionLU(A, L, U, N);
+	DecompositionLU(A, L, U, N); 
 	ResoudreSystemeLineaire(L, U, B, Y, X);
 
 	ecrireMatricesSortie(A, L, U, X, B, nomSortie);

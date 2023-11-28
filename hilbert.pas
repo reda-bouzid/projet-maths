@@ -78,12 +78,12 @@ begin
   end;
 end;
 
-procedure ecrireMatricesSortie(const A, L, U: Matrice; X, B : Vecteur);
+procedure ecrireMatricesSortie(const A, L, U: Matrice; X, B : Vecteur; nomSortie : String);
 var FichierTest : TextFile;
 	i, j : Integer;
 begin
 	//Ouverture du fichier en écriture
-	assign(FichierTest, 'sortie.txt');
+	assign(FichierTest, nomSortie + '.txt');
 	Rewrite(FichierTest);
 	
 	writeln(FichierTest, 'Matrice');
@@ -166,12 +166,16 @@ end;
 var
 	A, L, U: Matrice;
 	B, X, Y: Vecteur;
+	nomSortie : String;
 	
 begin
+	writeln('Nom du fichier de sortie : ');
+	readln(nomSortie);
+
 	creerHilbert(A, N);
 	creerVecteurHilbert(B);
 	DecompositionLU(A, L, U, N);
 	ResoudreSystemeLineaire(L, U, B, Y, X);
 	
-	ecrireMatricesSortie(A, L, U, X, B);
+	ecrireMatricesSortie(A, L, U, X, B, nomSortie);
 end.
